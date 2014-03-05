@@ -1,5 +1,6 @@
 module.exports = function(grunt, options)
 {
+    options || (options = {});
     var initDefinition = options.init || 'grunt/**/*.*',
         overrideStyle = options.style,
         overrideDefinitions = options.override,

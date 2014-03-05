@@ -1,0 +1,33 @@
+{
+  "name": "grunt-config-plus",
+  "version": "0.1.0",
+  "description": "Define package, description, aliases and task dependencies in an object/file per grunt task.",
+  "main": "grunt-config-plus.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickyout/grunt-config-plus.git"
+  },
+  "keywords": [
+    "grunt",
+    "config",
+    "alias",
+    "tools"
+  ],
+  "author": "Nicky Out",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "/blob/master/LICENSE-MIT"
+    }
+  ],
+  "peerDependencies": {
+      "grunt": "~0.4.2"
+  },
+  "bugs": {
+    "url": "https://github.com/nickyout/grunt-config-plus/issues"
+  },
+  "homepage": "https://github.com/nickyout/grunt-config-plus"
+}
