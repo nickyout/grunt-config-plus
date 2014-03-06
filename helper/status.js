@@ -11,7 +11,7 @@ module.exports = function(grunt, ROOT)
                 h = ROOT.style.color;
 
             u.white();
-            var reqPackages = [],
+            var reqPackages = ['grunt-config-plus'],
                 devPackages = [],
                 filterFunc = function(obj){
                     return (this.indexOf(obj) == -1);
