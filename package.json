@@ -1,6 +1,6 @@
 {
   "name": "grunt-config-plus",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Define package, description, aliases and task dependencies in an object/file per grunt task.",
   "main": "grunt-config-plus.js",
   "scripts": {
