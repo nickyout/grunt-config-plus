@@ -44,6 +44,7 @@ A task definition may consist of:
 * __package__: a package the tasks requires to run. What you would usually feed to grunt.loadNpmTasks
 * __dependencies__: a list of task names this task depends on. If execute is an array, appends this automatically.
 * __alias__: alternative names for the tasks.
+* __visible__: hides the task definition from the tasks list (see `grunt tasks`).
 
 ### Options
 

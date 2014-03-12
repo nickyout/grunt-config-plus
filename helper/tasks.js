@@ -15,6 +15,9 @@ module.exports = function(grunt, ROOT)
             u.writeln('Available tasks'[h]);
             for (var name in aliases)
             {
+                if (tasks[name].visible === false)
+                    continue;
+
                 names = aliases[name].slice();
                 for (var i = names.length-1; i>=0; i--)
                     if (!names[i]) names.splice(i,1);
