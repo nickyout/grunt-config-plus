@@ -8,21 +8,27 @@ module.exports = function(grunt, ROOT)
             var aliases = ROOT.alias,
                 tasks = ROOT.init,
                 u = ROOT.util,
-                h = ROOT.style.color,
-                names;
+                style = ROOT.style,
+                h = style.color,
+                names,
+                isVisible;
 
             u.white();
             u.writeln('Available tasks'[h]);
             for (var name in aliases)
             {
-                if (tasks[name].visible === false)
+                names = aliases[name].slice();
+                isVisible = (tasks[name].visible !== false);
+
+                if (!isVisible)
                     continue;
 
-                names = aliases[name].slice();
                 for (var i = names.length-1; i>=0; i--)
                     if (!names[i]) names.splice(i,1);
 
-                u.writeln(1, names.join(', ') + ':', (tasks[name].description || '-').cyan);
+                u.write(1, names.join(', ')[isVisible ? style.task : style.invisible]);
+                u.appendVerbose(':', (tasks[name].description || '-')[style.descr]);
+                u.white();
             }
         }
     }

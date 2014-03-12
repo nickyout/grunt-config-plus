@@ -11,7 +11,9 @@ module.exports = function(grunt, options)
             baseDir: baseDir,
             style: {
                 color: 'yellow',
-                indent: '  '
+                indent: '  ',
+                descr: 'cyan',
+                task: 'bold'
             },
             grunt: grunt,
             package: grunt.file.readJSON('package.json'),
@@ -261,8 +263,9 @@ module.exports = function(grunt, options)
     {
         if (ROOT.alias['help'].indexOf(taskName) != -1)
             return;
+        u.white();
         var description = taskDef.description || 'No description available';
-        u.writeln(1, description[h]);
+        u.writeln(taskName[style.task] + ':', description[style.descr]);
     }
 
 };

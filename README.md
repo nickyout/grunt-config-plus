@@ -54,7 +54,11 @@ All properties:
 ```js
 {
     init: {glob-path|Object} searches again for glob-paths 1 level deep
-    style: {glob-path|Object}
+    style: {glob-path|Object} {
+        color: {String} common console output color see nodejs/grunt log colors
+        descr: {String} color property, for descriptions only
+        task: {String} color property, for task names only
+    }
     override: {glob-path|Object} {
         init: {Object}, Appends the resulting init object with this. Nested objects are possible.
         config: {Object}, Appends the resulting grunt config with this. Nested objects are possible.
