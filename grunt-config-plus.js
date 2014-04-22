@@ -3,7 +3,7 @@ module.exports = function(grunt, options)
     options || (options = {});
     var initDefinition = options.init || 'grunt/**/*.*',
         overrideStyle = options.style,
-        overrideDefinitions = options.override,
+        overrideDefinitions = options.override || {},
         baseDir = options.baseDir || process.cwd();
 
     var path = require('path'),
