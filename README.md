@@ -2,6 +2,10 @@
 
 > Define package, description, aliases and task dependencies in an object/file per grunt task.
 
+This grunt configuration structure, like others, fetches its config from files. What I have not yet found so far is something that only loads the npm modules I need to run. Granted, grunt is fast after the first load, but I wanted grunt to always run as snappy as possible. 
+
+So here is grunt-config-plus. Define all your tasks fully within the scope of a single object. Refer tot those object with glob-paths, if you want. Create aliases for those tasks. List them, or hide them from the list. Print an explanation for your tasks. Json it, js it, whatever you fancy. It's so convenient. 
+
 ## Getting Started
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -18,9 +22,6 @@ module.exports = function(grunt) {
 ```
 
 ## The "grunt-config-plus" plugin
-This grunt configuration structure, like others, fetches its config from files. What I have not yet found so far is something that only loads the npm modules I need to run. Granted, grunt is fast after the first load, but I wanted grunt to always run as snappy as possible. 
-
-So here is grunt-config-plus. Define all your tasks fully within the scope of a single object. Refer tot those object with glob-paths, if you want. Create aliases for those tasks. List them, or hide them from the list. Print an explanation for your tasks. Json it, js it, whatever you fancy. It's so convenient. 
 
 ### Overview
 Point to a directory where you hold all your config options:
