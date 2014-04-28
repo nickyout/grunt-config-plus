@@ -79,9 +79,8 @@ module.exports = function(grunt, options)
             if (ROOT.alias.hasOwnProperty(name))
                 customDeps.push(name);
 
-
     var allTasks = u.mergeArray(grunt.cli.tasks, "default"),
-        bootDef = createBootDef(ROOT, allTasks);
+        bootDef = createBootDef(ROOT, allTasks, customDeps);
 
     // Custom config overrides user and defaults
     gc.overrideConfig(overrideDefinitions.config, bootDef.config, 'gruntConfig');
@@ -144,12 +143,13 @@ module.exports = function(grunt, options)
         ROOT.alias[name] = aliases;
     }
 
-    function createBootDef(ROOT, allTasks)
+    function createBootDef(ROOT, allTasks, customDeps)
     {
         var helpOnly = (allTasks.filter(function(val){
                 return (u.mergeArray(ROOT.alias['help']).indexOf(val) != -1);
             }).length > 0 && allTasks.length > 2);
 
+        allTasks = u.mergeArray(allTasks, customDeps);
         var bootDef = {
                 tasks: {},
                 config: { pkg: ROOT.package },
@@ -160,11 +160,8 @@ module.exports = function(grunt, options)
             i;
 
         if (!helpOnly)
-        {
             for (i= 0; i< allTasks.length; i++)
                 registerFromConfig(ROOT, allTasks[i].split(':')[0], bootDef, registered);
-
-        }
 
         return bootDef;
 
@@ -209,6 +206,18 @@ module.exports = function(grunt, options)
 
             descr && arr.splice(1,0,descr);
             bootDef.tasks[name] = arr;
+        } else if (!ROOT.alias[name]){
+            var originalName;
+
+            for (var n in ROOT.alias) {
+                if (n == name || !ROOT.alias[n])
+                    continue;
+                if (ROOT.init[n] == c)
+                    originalName = n;
+            }
+            // name is actually an alias, register as original + params
+            bootDef.tasks[name] = [name, [originalName + grunt.cli.tasks.join(',').match(new RegExp(name + "(:?[^\\,]*)"))[1]]];
+            name = originalName;
         }
 
         if (dependencies)
@@ -243,8 +252,9 @@ module.exports = function(grunt, options)
 
         // Register all functions
         for (name in tasksToRegister)
-            if (tasksToRegister.hasOwnProperty(name))
+            if (tasksToRegister.hasOwnProperty(name)) {
                 grunt.registerTask.apply(grunt.registerTask, tasksToRegister[name]);
+            }
 
         i = 0;
         while (el = obj.npmTasks[i++])
