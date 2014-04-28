@@ -26,9 +26,7 @@ module.exports = function(grunt, ROOT)
                 for (var i = names.length-1; i>=0; i--)
                     if (!names[i]) names.splice(i,1);
 
-                u.write(1, names.join(', ')[isVisible ? style.task : style.invisible]);
-                u.appendVerbose(':', (tasks[name].description || '-')[style.descr]);
-                u.white();
+                u.writeln(1, (names.join(', ') + ":")[style.task], (tasks[name].description || '-')[style.descr]);
             }
         }
     }

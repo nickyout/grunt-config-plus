@@ -12,7 +12,7 @@ module.exports = function(grunt, ROOT) { return {
             self = this,
             path = this.path;
 
-        ROOT.util.verboseln('checking'[h], rootName + ':', (globOrObject + '').grey);
+        ROOT.util.verbose('checking'[h], rootName + ':', (globOrObject + '').grey);
 
         switch (grunt.util.kindOf(globOrObject))
         {
@@ -24,17 +24,22 @@ module.exports = function(grunt, ROOT) { return {
                     if (!internal)
                         filePath = path.join(ROOT.baseDir,filePath);
 
-                    ROOT.util.verboseln(1, filePath);
+                    ROOT.util.verbose(1, filePath);
                     thisConfig = self.readConfigFile(filePath);
                     if (thisConfig && thisConfig.out)
                         configs.push(thisConfig);
                 });
 
                 // Single config or multiple?
-                returnConfig = {};
-                configs.forEach(function(configDef){
-                    returnConfig[configDef.name] = configDef.out;
-                });
+                if (configs.length == 1)
+                    returnConfig = configs[0].out;
+                else
+                {
+                    returnConfig = {};
+                    configs.forEach(function(configDef){
+                        returnConfig[configDef.name] = configDef.out;
+                    });
+                }
                 break;
 
             case "object":
@@ -94,10 +99,10 @@ module.exports = function(grunt, ROOT) { return {
 
                 if (dest[name])
                 {
-                    destLabel && ROOT.util.verboseln('Overriding: '[h] + destLabel + '.' + name + ' ...'[h]);
+                    destLabel && ROOT.util.writeln('Overriding: '[h] + destLabel + '.' + name + ' ...'[h]);
                     if (grunt.util.kindOf(dest[name]) == "object" && grunt.util.kindOf(source[name]) == "object")
                     {
-                        this.overrideConfig(source[name], dest[name], destLabel && (destLabel + '.' + name));
+                        overrideConfig(source[name], dest[name], destLabel && (destLabel + '.' + name));
                         continue;
                     }
                 }
