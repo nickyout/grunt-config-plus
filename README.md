@@ -7,15 +7,6 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 
 ```shell
 npm install grunt-config-plus --save-dev
-# grunt-config-plus
-
-> Define package, description, aliases and task dependencies in an object/file per grunt task.
-
-## Getting Started
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
-
-```shell
-npm install grunt-config-plus --save-dev
 ```
 
 Once the plugin is installed, load it in your Gruntfile.js like this:
