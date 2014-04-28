@@ -338,4 +338,4 @@ These tasks are added by default, and will automatically be overridden if you ch
 * __view, v__: view an object tree containing all loaded configs, as well as grunt itself. Optional path opens the (nested) property inside that object.
 
 ## Release History
-__0.1.5__: Prerelease
+[__0.1.5__](https://github.com/nickyout/grunt-config-plus/releases/tag/0.1.5): Prerelease
