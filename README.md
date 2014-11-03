@@ -2,7 +2,7 @@
 
 > Define package, description, aliases and task dependencies in an object/file per grunt task.
 
-*Version 0.2.x has a slightly different syntax compared to 0.1.x. I was getting tired to have to look up the format of a Gruntfile, so now the module makes it easier. Furthermore, I find that the builtin tasks are polluting the overview done by calling `grunt`, so I set them to invisible by default. For examples, you're reading the updated README.*
+*Version 1.0.x has a slightly different syntax compared to 0.1.x. I was getting tired to have to look up the format of a Gruntfile, so now the module makes it easier. Furthermore, I find that the builtin tasks are polluting the overview done by calling `grunt`, so I set them to invisible by default. For examples, you're reading the updated README.*
 
 This grunt configuration structure, like others, fetches its config from files. What I have not yet found so far is something that only loads the npm modules I need to run. Granted, grunt is fast after the first load, but I wanted grunt to always run as snappy as possible.
 
@@ -177,3 +177,5 @@ These tasks are added by default, and will automatically be overridden if you ch
 ## Release History
 [__0.1.5__](https://github.com/nickyout/grunt-config-plus/releases/tag/0.1.5): Prerelease
 [__0.2.0__](https://github.com/nickyout/grunt-config-plus/releases/tag/0.2.0): New notation, new defaults. 
+[__1.0.0__](https://github.com/nickyout/grunt-config-plus/releases/tag/1.0.0): Oops that means by semver definition a new major number. 
+
