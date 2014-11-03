@@ -169,10 +169,11 @@ module.exports = require('grunt-config-plus')({
 ### Tools
 These tasks are added by default, and will automatically be overridden if you choose to set another task under that name.
 
-* __tasks, t__: view all available tasks. Set as the default (run `grunt`). 
+* __tasks, t__: view all available tasks. Set as the default (run `grunt`).
 * __status__: compare package.devDependencies with the packages defined in your config files.
 * __help, h__: show tips, or, with other tasks, displays the description of the tasks
 * __view, v__: view an object tree containing all loaded configs, as well as grunt itself. Optional path opens the (nested) property inside that object.
 
 ## Release History
 [__0.1.5__](https://github.com/nickyout/grunt-config-plus/releases/tag/0.1.5): Prerelease
+[__0.2.0__](https://github.com/nickyout/grunt-config-plus/releases/tag/0.2.0): New notation, new defaults. 
