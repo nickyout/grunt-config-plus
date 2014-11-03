@@ -2,6 +2,7 @@ module.exports = function(grunt, ROOT){
     return {
         "description": "Gives startup tips, or, next to one/multiple tasks, the description of a task.",
         "alias": "h",
+        "visible": false,
         "execute": function()
         {
             var u = ROOT.util,

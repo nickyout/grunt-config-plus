@@ -2,6 +2,7 @@ module.exports = function(grunt, ROOT)
 {
     return {
         "description": "Checks missing/redundant grunt packages in package.json",
+        "visible": false,
         /**
          * Shows registered vs used devDependencies.
          */

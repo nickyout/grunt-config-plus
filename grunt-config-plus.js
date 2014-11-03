@@ -1,4 +1,10 @@
-module.exports = function(grunt, options)
+module.exports = function(options) {
+    return function(grunt) {
+        gruntConfigPlus(grunt, options);
+    }
+};
+
+function gruntConfigPlus(grunt, options)
 {
     options || (options = {});
     var initDefinition = options.init || 'grunt/**/*.*',
@@ -45,6 +51,7 @@ module.exports = function(grunt, options)
     // Add default tasks
     addInitConfig("default", {
         "description": "Runs 'tasks'.",
+        "visible": false,
         "execute": ["tasks"]
     });
 
@@ -277,5 +284,4 @@ module.exports = function(grunt, options)
         var description = taskDef.description || 'No description available';
         u.writeln(taskName[style.task] + ':', description[style.descr]);
     }
-
-};
+}

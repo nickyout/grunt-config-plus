@@ -2,7 +2,9 @@
 
 > Define package, description, aliases and task dependencies in an object/file per grunt task.
 
-This grunt configuration structure, like others, fetches its config from files. What I have not yet found so far is something that only loads the npm modules I need to run. Granted, grunt is fast after the first load, but I wanted grunt to always run as snappy as possible. 
+*Version 0.2.x has a slightly different syntax compared to 0.1.x. I was getting tired to have to look up the format of a Gruntfile, so now the module makes it easier. Furthermore, I find that the builtin tasks are polluting the overview done by calling `grunt`, so I set them to invisible by default. For examples, you're reading the updated README.*
+
+This grunt configuration structure, like others, fetches its config from files. What I have not yet found so far is something that only loads the npm modules I need to run. Granted, grunt is fast after the first load, but I wanted grunt to always run as snappy as possible.
 
 So here is grunt-config-plus. Define all your tasks fully within the scope of a single object. Refer tot those object with glob-paths, if you want. Create aliases for those tasks. List them, or hide them from the list. Print an explanation for your tasks. Json it, js it, whatever you fancy. It's so convenient. 
 
@@ -13,24 +15,29 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 npm install grunt-config-plus --save-dev
 ```
 
-Once the plugin is installed, load it in your Gruntfile.js like this:
+Once the plugin is installed, create a Gruntfile.js in your root folder that looks like:
 
 ```js
-module.exports = function(grunt) {
-    require('grunt-config-plus')(grunt);
-};
+module.exports = require('grunt-config-plus')();
 ```
+
+So if you wish to use it as part of a Gruntfile, you could also do:
+
+```
+module.exports = function(grunt) {
+    require('grunt-config-plus')()(grunt);
+}
+
+The first function call is to optionally pass an config object, discussed below.
 
 ## The "grunt-config-plus" plugin
 
 ### Overview
 Point to a directory where you hold all your config options:
 ```js
-module.exports = function(grunt) {
-    require('grunt-config-plus')(grunt, {
-        init: 'grunt/*.*',
-    });
-};
+module.exports = require('grunt-config-plus')({
+    init: 'grunt/*.*',
+});
 ```
 
 Now you can put all your task definitions in your specified folder.
@@ -43,7 +50,7 @@ A task definition may consist of:
 
 * __name__: the grunt task name and grunt config name. Derived from the name of the config file.
 * __config__: `{Object}` the configuration object that you would normally feed with grunt.initConfig under property 'name'
-* __description__: `{String}` description of what this task does. Displayed when running `grunt tasks`
+* __description__: `{String}` description of what this task does. Displayed when running `grunt tasks` or (default) `grunt`
 * __execute__: `{Function|Array}` a function or array of task names that will be executed when this task is run.
 * __package__: `{String}` a package the task(s) needs in order to run. What you would usually feed to grunt.loadNpmTasks
 * __dependencies__: `{Array}` An array of task names this task depends on. If execute is an array of task names, it automatically appends dependencies.
@@ -94,7 +101,7 @@ A config file named `install.json`, producing the task `grunt install` and alias
 ```
 
 ### Config
-The config is the optional object passed as second parameter to grunt-config-plus, next to grunt itself.
+The config is the optional object passed as parameter to grunt-config-plus.
 
 #### Config properties
 The config may have the following properties:
@@ -130,44 +137,39 @@ Note that all results of a glob-path are automatically converted to an object, n
 #### Config examples
 Fetches config files from directory `grunt-config` relative to `Gruntfile.js`:
 ```js
-module.exports = function(grunt) {
-    require('grunt-config-plus')(grunt, {
-        init: 'grunt-config/*.*'
-    });
-};
+module.exports = require('grunt-config-plus')({
+    init: 'grunt-config/*.*'
+});
 ```
 
-Hides all default tasks except help:
+Show all builtin tasks:
 ```js
-module.exports = function(grunt) {
-    require('grunt-config-plus')(grunt, {
-        override: {
-            init: {
-                default: { visible: false },
-                view: { visible: false },
-                status: { visible: false },
-                tasks: { visible: false }
-            }
+module.exports = require('grunt-config-plus')({
+    override: {
+        init: {
+            default: { visible: true },
+            view: { visible: true },
+            status: { visible: true },
+            tasks: { visible: true },
+            help: { visible: true }
         }
-    });
-};
+    }
+});
 ```
 
 Always loads all task definitions (and their dependencies and packages):
 ```js
-module.exports = function(grunt) {
-    require('grunt-config-plus')(grunt, {
-        override: {
-            dependencies: '*'
-        }
-    });
-};
+module.exports = require('grunt-config-plus')({
+    override: {
+        dependencies: '*'
+    }
+});
 ```
 
 ### Tools
 These tasks are added by default, and will automatically be overridden if you choose to set another task under that name.
 
-* __tasks, t__: view all available tasks
+* __tasks, t__: view all available tasks. Set as the default (run `grunt`). 
 * __status__: compare package.devDependencies with the packages defined in your config files.
 * __help, h__: show tips, or, with other tasks, displays the description of the tasks
 * __view, v__: view an object tree containing all loaded configs, as well as grunt itself. Optional path opens the (nested) property inside that object.

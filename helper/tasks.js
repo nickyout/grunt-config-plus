@@ -3,6 +3,7 @@ module.exports = function(grunt, ROOT)
     return {
         "description": "List all available tasks",
         "alias": "t",
+        "visible": false,
         "execute": function()
         {
             var aliases = ROOT.alias,

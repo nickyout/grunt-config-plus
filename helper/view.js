@@ -2,6 +2,7 @@ module.exports = function(grunt, ROOT){
     return {
         "description": "View grunt or package.json. Use 'grunt view:grunt.[prop].[nest].[etc].'",
         "alias": "v",
+        "visible": false,
         "execute": function()
         {
             var tg = ROOT,
